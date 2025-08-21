@@ -20,6 +20,19 @@ public class TongsUi : UiBase
 
     public void ShowAnimation()
     {
-        anim.Play("Play", 0, 0);
+        anim.Play(Str.Play, 0, 0);
+    }
+
+    private void StartEvent()
+    {
+        //애니메이션 호출 전용 메서드
+        UiManager.Instance.On<BoxEffectUi>();
+    }
+
+    private void EndEvent()
+    {
+        //애니메이션 호출 전용 메서드
+        UiManager.Instance.Get<StartButtonUi>().CanButton();
+        UiManager.Instance.Off<BoxEffectUi>();
     }
 }

@@ -18,7 +18,7 @@ public class GlobalVolumeManager : MonoBehaviour
 
     private void Awake()
     {
-        if(!Instance)
+        if (!Instance)
         {
             Instance = this;
             Init();
@@ -33,11 +33,16 @@ public class GlobalVolumeManager : MonoBehaviour
 
     private T TryGet<T>() where T : VolumeComponent
     {
-        var volume = TryGet<T>();
-        if (volume) return volume;
-        else Utility.Log($"{typeof(T).Name}은 없는 볼륨");
+        if (globalVolume.profile.TryGet<T>(out var _component))
+        {
+            return _component;
+        }
 
-        return null;
+        else
+        {
+            Utility.Log($"{typeof(T).Name}은 없는 볼륨");
+            return null;
+        }
     }
 
     private void Init()

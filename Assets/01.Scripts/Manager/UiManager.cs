@@ -12,7 +12,7 @@ public class UiManager : MonoBehaviour
         if (!Instance)
         {
             Instance = this;
-            FindComponent();
+            FindComponent(this.transform);
             DontDestroyOnLoad(this.gameObject);
         }
 
@@ -22,13 +22,15 @@ public class UiManager : MonoBehaviour
         }
     }
 
-    private void FindComponent()
+    private void FindComponent(Transform _parent)
     {
-        for (int i = 0; i < this.transform.childCount; i++)
+        for (int i = 0; i < _parent.transform.childCount; i++)
         {
-            var child = this.transform.GetChild(i);
+            var child = _parent.transform.GetChild(i);
             var component = child.GetComponent<UiBase>();
             if (component) component.Init();
+
+            FindComponent(child);
         }
     }
 
