@@ -37,8 +37,7 @@ public class TongsUi : UiBase
     private void EndEvent()
     {
         //애니메이션 호출 전용 메서드
-        UiManager.Instance.Get<StartButtonUi>().CanButton();
-        UiManager.Instance.Off<PopUpUi>();
+        UiManager.Instance.On<DoorUi>();
         UiManager.Instance.Off<BoxEffectUi>();
     }
 }
