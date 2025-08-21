@@ -18,6 +18,11 @@ public class TongsUi : UiBase
         UiManager.Instance.Add<TongsUi>(this);
     }
 
+    public override void Off()
+    {
+        anim.Play(Str.Idle, 0, 0);
+    }
+
     public void ShowAnimation()
     {
         anim.Play(Str.Play, 0, 0);
@@ -33,6 +38,7 @@ public class TongsUi : UiBase
     {
         //애니메이션 호출 전용 메서드
         UiManager.Instance.Get<StartButtonUi>().CanButton();
+        UiManager.Instance.Off<PopUpUi>();
         UiManager.Instance.Off<BoxEffectUi>();
     }
 }

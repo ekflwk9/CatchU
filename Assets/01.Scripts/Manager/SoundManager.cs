@@ -27,7 +27,7 @@ public static class SoundManager
             {
                 effectSource[i] = Instance.AddComponent<AudioSource>();
                 effectSource[i].playOnAwake = false;
-                effectSource[i].loop = true;
+                effectSource[i].loop = false;
             }
 
             var loadSounds = Resources.LoadAll<AudioClip>(Str.Sounds);
@@ -45,8 +45,18 @@ public static class SoundManager
     /// <param name="_soundName"></param>
     public static void OnMusic(string _soundName)
     {
-        if (sounds.ContainsKey(_soundName)) musicSource.clip = sounds[_soundName];
-        else Utility.Log($"{_soundName}는 추가되지 않은 사운드");
+        CheckStart();
+
+        if (sounds.ContainsKey(_soundName))
+        {
+            musicSource.clip = sounds[_soundName];
+            musicSource.Play();
+        }
+
+        else
+        {
+            Utility.Log($"{_soundName}는 추가되지 않은 사운드");
+        }
     }
 
     /// <summary>
@@ -55,6 +65,7 @@ public static class SoundManager
     /// <param name="_soundName"></param>
     public static void OnEffect(string _soundName)
     {
+        CheckStart();
         if (!sounds.ContainsKey(_soundName)) return;
 
         playEffectCount++;
