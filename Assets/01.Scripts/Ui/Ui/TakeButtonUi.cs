@@ -1,16 +1,15 @@
-using UnityEngine;
+﻿using UnityEngine.EventSystems;
 
-public class TakeButtonUi : MonoBehaviour
+public class TakeButtonUi : UiBase, IPointerClickHandler
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Init()
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        
+        UiManager.Instance.On<FadeUi>();
+
+        //아이템 저장 로직 추가
     }
 }

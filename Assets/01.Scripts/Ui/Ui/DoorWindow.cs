@@ -45,6 +45,7 @@ public class DoorWindow : UiBase, IBeginDragHandler, IDragHandler, IEndDragHandl
         isClick = true;
         image.fillAmount = 1f;
         UiManager.Instance.On<ResultUi>();
+        UiManager.Instance.Off<TongsUi>();
         UiManager.Instance.Off<ItemEffectUi>();
         UiManager.Instance.Get<StartButtonUi>().CanButton();
     }

@@ -19,9 +19,11 @@ public class StartButtonUi : UiBase, IPointerClickHandler
     {
         if (!isClick)
         {
+            var item = ItemManager.GetRandomItem();
+
             UiManager.Instance.Get<TongsUi>().ShowAnimation();
-            var testRan = Random.Range(0, 2);
-            UiManager.Instance.Get<ItemEffectUi>().SetColor(testRan == 0 ? Color.blue : Color.yellow);
+            UiManager.Instance.Get<ResultUi>().SetItem(item);
+            UiManager.Instance.Get<ItemEffectUi>().SetColor(item.effectColor);
             isClick = true;
         }
     }
