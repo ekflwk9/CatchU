@@ -29,8 +29,10 @@ public class ResultUi : UiBase
     /// <param name="_item"></param>
     public void SetItem(Item _item)
     {
+        itemTitle.color = _item.effectColor;
+        itemTitle.text = _item.rank;
+
         icon.sprite = _item.sprite;
-        itemTitle.text = _item.title;
         itemName.text = _item.name;
         itemPrice.text = _item.price.ToString("N0");
     }
