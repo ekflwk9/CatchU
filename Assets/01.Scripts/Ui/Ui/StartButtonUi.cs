@@ -1,4 +1,5 @@
-﻿using UnityEngine.EventSystems;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class StartButtonUi : UiBase, IPointerClickHandler
 {
@@ -19,6 +20,8 @@ public class StartButtonUi : UiBase, IPointerClickHandler
         if (!isClick)
         {
             UiManager.Instance.Get<TongsUi>().ShowAnimation();
+            var testRan = Random.Range(0, 2);
+            UiManager.Instance.Get<ItemEffectUi>().SetColor(testRan == 0 ? Color.blue : Color.yellow);
             isClick = true;
         }
     }
